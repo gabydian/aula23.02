@@ -7,6 +7,9 @@ const anos = [Number('2012'),Number('2010'),Number('2020'),Number('2022'),Number
 function menoresAnos(year) {
     const menoresAnos [];
     for(let ano of anos) {
-        return new Array[year];
+        if(ano < anos){
+            menoresAnos.push(ano)
+        }
     }
+    return menoresAnos;
 }
