@@ -1,19 +1,35 @@
-function calcularValorCompra(valorCompra, possuiConvenio, usaCartaoLoja, desconto = 100) {
-  let valorFinal = valorCompra;
 
-  if (possuiConvenio || usaCartaoLoja) {
-    let descontoMaximo = valorCompra * 0.15;
 
-    if (usaCartaoLoja && possuiConvenio) {
-      desconto = Math.min(descontoMaximo, desconto);
-    } else if (usaCartaoLoja) {
-      desconto = Math.min(descontoMaximo, desconto);
-    } else if (possuiConvenio) {
-      desconto = Math.min(descontoMaximo, desconto);
+function calculadoraLoja(
+        valor,
+        convenio,
+        cartao,
+        limite = 100,
+        ) {
+
+            function limiteDesconto (desconto) {
+                if (desconto > limite) {
+                    return limite;
+                }
+                return desconto;
+            }
+        // if(limite === undefined) {
+            // limite = 100;
+        // }
+
+        
+        if (convenio && cartao) {
+            let desconto = valor * 0.15;
+           
+            return valor - limiteDesconto(desconto);
+        }
+
+        if (convenio || cartao) {
+            let desconto = valor * 0.10;
+            
+            return valor - limiteDesconto(desconto);
     }
 
-    valorFinal -= valorCompra * (desconto / 100);
-  }
-
-  return valorFinal;
+    
 }
+console.log (calculadoraLoja(2000, true, false));
